@@ -10,14 +10,14 @@ En el archivo *Script correcciones* se proponen formas alternativas de calcular 
 
 El resumen y descarga directa de los cuadros más relevantes se presenta aquí:
 
-> 1. Organizaciones Sindicales (OOSS)
+### 1. Organizaciones Sindicales (OOSS)
 
-[Cuadro1](Output/Cuadros/1. OOSS/cuadro1.xlsx). Cantidad de sindicatos activos, poblacion afiliada a sindicatos activos, fuerza de trabajo y tasas de sindicalización.
+[Cuadro1](https://github.com/nicolasrattor/COMPENDIOS_DT/blob/main/Output/Cuadros/1.%20OOSS/cuadro1.xlsx). Cantidad de sindicatos activos, poblacion afiliada a sindicatos activos, fuerza de trabajo y tasas de sindicalización.
 
-[Cuadro2](Output/Cuadros/1. OOSS/cuadro2.xlsx). Cantidad de trabajadores afiliados a sindicatos activos, fuerza de trabajo ocupada, y tasa de sindicalización, según sexo.
+[Cuadro2](https://github.com/nicolasrattor/COMPENDIOS_DT/blob/main/Output/Cuadros/1.%20OOSS/cuadro2.xlsx). Cantidad de trabajadores afiliados a sindicatos activos, fuerza de trabajo ocupada, y tasa de sindicalización, según sexo.
 
-[Cuadro3](Output/Cuadros/1. OOSS/cuadro3.xlsx). Cantidad de sindicatos activos a nivel nacional, por rama de actividad económica.
+[Cuadro3](https://github.com/nicolasrattor/COMPENDIOS_DT/blob/main/Output/Cuadros/1.%20OOSS/cuadro3.xlsx). Cantidad de sindicatos activos a nivel nacional, por rama de actividad económica.
 
-> 2. Negociaciones colectivas
+### 2. Negociaciones colectivas
 
-> 3. Huelgas
+### 3. Huelgas
