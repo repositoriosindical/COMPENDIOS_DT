@@ -1,5 +1,5 @@
 ---
-title: "Sindicatos"
+title: "OOSS"
 output: html_document
 ---
 
@@ -14,3 +14,15 @@ La Dirección del Trabajo publica interesante información estadística sobre si
 ![](Output/Graficos/1. OOSS/grafico1.Evolucion de las tasas de sindicalizacion de la poblacion afiliada a sindicatos activos.png)
 
 [Descargar datos](Output/Cuadros/1. OOSS/cuadro1.xlsx)
+
+
+![](Output/Graficos/1. OOSS/grafico3.Cantidad de sindicatos activos a nivel nacional, por rama de actividad económica.png)
+
+[Descargar datos](Output/Cuadros/1. OOSS/cuadro3.xlsx)
+
+
+
+## Tablas ordenadas
+
+En desarrollo en [github](https://github.com/nicolasrattor/COMPENDIOS_DT).
+
