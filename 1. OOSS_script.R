@@ -69,8 +69,9 @@ cuadro1 %>% select(ano,tasa_sind1,tasa_sind2,tasa_sind3) %>%
   theme(legend.position = "bottom",plot.title = element_text(size=12),
         plot.subtitle = element_text(size=10),
         plot.caption = element_text(size=8)) + 
-  geom_text_repel(aes(label=ifelse(ano%in%c(1991,1995,2000,2004,2009,2015,2018),format(round(tasa,1)),"")), vjust=-1,colour="black") + 
-  
+  geom_text_repel(aes(label=ifelse(ano%in%c(1991,1995,2000,2004,2009,2015,2018),format(paste0(round(tasa,1),"%")),"")), vjust=-1,colour="black")
+                      
+
 
 ggsave(
   plot = last_plot(),

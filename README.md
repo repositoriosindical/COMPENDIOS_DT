@@ -8,22 +8,30 @@ La Dirección del Trabajo publica interesante información estadística sobre si
 
 Los archivos `.R` con el sufijo *_script* producen los principales cuadros y gráficos de los compendios estadísticos, los cuáles se encuentran guardados en la ruta `Output/Cuadros` o `Output/Graficos`. La numeración de cuadros y gráficos corresponde a la de los documentos publicados por la misma DT. Los datos de los archivos `pdf` se pasaron a `R` mediante dos formas alternativas: (1) se copiaron y pegaron las tablas como texto en el script del programa, o (2) Con la aplicación online `I love pdf` se transformaron a `xlsx` los archivos `pdf`. Mediante los paquetes `readxl` y `openxlsx` estos archivos excel fueron leídos y posteriormente ordenados.
 
-En el archivo *Script correcciones* se proponen formas alternativas de calcular las tasas de sindicalización y otros indicadores en base a otros datos novedosos o datos actualizados (en desarrollo). Los resultados de esto se presentan en la ruta `Output/Extra`.
+En el archivo *NUEVOS CUADROS Y GRAFICOS* se proponen formas alternativas de calcular las tasas de sindicalización y otros indicadores en base a datos actualizados (en desarrollo). Los resultados de esto se presentan en la ruta `Output/Nuevo`.
 
 El resumen y descarga directa de los cuadros más relevantes se presenta aquí:
 
 ### 1. Organizaciones Sindicales (OOSS)
 
-[Cuadro1](https://github.com/nicolasrattor/COMPENDIOS_DT/blob/main/Output/Cuadros/1.%20OOSS/cuadro1.xlsx). Cantidad de sindicatos activos, poblacion afiliada a sindicatos activos, fuerza de trabajo y tasas de sindicalización.
+[Cuadro1](https://github.com/nicolasrattor/COMPENDIOS_DT/raw/main/Output/Cuadros/1.%20OOSS/cuadro1.xlsx). Cantidad de sindicatos activos, poblacion afiliada a sindicatos activos, fuerza de trabajo y tasas de sindicalización.
 
-[Cuadro2](https://github.com/nicolasrattor/COMPENDIOS_DT/blob/main/Output/Cuadros/1.%20OOSS/cuadro2.xlsx). Cantidad de trabajadores afiliados a sindicatos activos, fuerza de trabajo ocupada, y tasa de sindicalización, según sexo.
+[Cuadro2](https://github.com/nicolasrattor/COMPENDIOS_DT/raw/main/Output/Cuadros/1.%20OOSS/cuadro2.xlsx). Cantidad de trabajadores afiliados a sindicatos activos, fuerza de trabajo ocupada, y tasa de sindicalización, según sexo.
 
-[Cuadro3](https://github.com/nicolasrattor/COMPENDIOS_DT/blob/main/Output/Cuadros/1.%20OOSS/cuadro3.xlsx). Cantidad de sindicatos activos a nivel nacional, por rama de actividad económica.
+[Cuadro3](https://github.com/nicolasrattor/COMPENDIOS_DT/raw/main/Output/Cuadros/1.%20OOSS/cuadro3.xlsx). Cantidad de sindicatos activos a nivel nacional, por rama de actividad económica.
 
-[Cuadro4](https://github.com/nicolasrattor/COMPENDIOS_DT/blob/main/Output/Cuadros/1.%20OOSS/cuadro4.xlsx). Cantidad de afiliados a sindicatos activos a nivel nacional, por rama de actividad económica.
+[Cuadro4](https://github.com/nicolasrattor/COMPENDIOS_DT/raw/main/Output/Cuadros/1.%20OOSS/cuadro4.xlsx). Cantidad de afiliados a sindicatos activos a nivel nacional, por rama de actividad económica.
 
-[Cuadro5](https://github.com/nicolasrattor/COMPENDIOS_DT/blob/main/Output/Cuadros/1.%20OOSS/cuadro5.xlsx). Cantidad de afiliados a sindicatos activos a nivel nacional, por rama de actividad económica y sexo.
+[Cuadro5](https://github.com/nicolasrattor/COMPENDIOS_DT/raw/main/Output/Cuadros/1.%20OOSS/cuadro5.xlsx). Cantidad de afiliados a sindicatos activos a nivel nacional, por rama de actividad económica y sexo.
 
 ### 2. Negociaciones colectivas
 
 ### 3. Huelgas
+
+[Cuadro1](https://github.com/nicolasrattor/COMPENDIOS_DT/raw/main/Output/Cuadros/3.%20HUELGAS/cuadro1.xlsx). Cantidad de huelgas y trabajadores involucrados, por estado de huelga.
+
+### 4. Nuevos cuadros y gráficos
+
+[Cuadro1](). Tasas de sindicalización nacionales corregidas (INE CENSO 2017). En desarrollo.
+
+[Cuadro2](). Tasas de sindicalización por sector económico (INE CENSO 2017). En desarrollo. 
