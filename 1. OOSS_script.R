@@ -59,6 +59,7 @@ cuadro1
 
 
 # Grafico 1
+
 cuadro1 %>% select(ano,tasa_sind1,tasa_sind2,tasa_sind3) %>% 
   gather(tipo,tasa,-ano) %>% mutate(tasa=as.numeric(tasa)) %>% 
   ggplot(aes(x=ano,y=tasa,color=tipo)) + geom_line() + geom_point() + theme_bw() + 
@@ -70,12 +71,62 @@ cuadro1 %>% select(ano,tasa_sind1,tasa_sind2,tasa_sind3) %>%
         plot.subtitle = element_text(size=10),
         plot.caption = element_text(size=8)) + 
   geom_text_repel(aes(label=ifelse(ano%in%c(1991,1995,2000,2004,2009,2015,2018),format(paste0(round(tasa,1),"%")),"")), vjust=-1,colour="black")
-                      
+
+
 
 
 ggsave(
   plot = last_plot(),
   filename = "Output/Graficos/1. OOSS/grafico1.Evolucion de las tasas de sindicalizacion de la poblacion afiliada a sindicatos activos.png",
+  device = "png",
+  dpi = "retina",
+  units = "cm",
+  width = 33,
+  height = 17
+)
+
+
+cuadro1 %>% select(ano,poblacion_afiliada,poblacion_afiliada_sind_dep) %>% 
+  gather(tipo,tasa,-ano) %>% mutate(tasa=as.numeric(tasa)) %>% 
+  ggplot(aes(x=ano,y=tasa,color=tipo)) + geom_line() + geom_point() + theme_bw() + 
+  labs(title = "Gráfico 1. B. Evolución de los y las afiliadas a sindicatos activos en Chile. Según dependencia del sindicato.",
+       x="Anos",
+       y = "Trabajadores/as",
+       caption = "Fuente: Compendio estadístico Dirección del Trabajo") + 
+  theme(legend.position = "bottom",plot.title = element_text(size=12),
+        plot.subtitle = element_text(size=10),
+        plot.caption = element_text(size=8)) + 
+  geom_text_repel(aes(label=ifelse(ano%in%c(1991,1995,2000,2004,2009,2015,2018),format(tasa, big.mark = ".", scientific = FALSE),"")), vjust=-1,colour="black") +
+  scale_x_continuous(limits = c(1990, 2018),breaks = c(1990,2000,2010,2018))
+
+ggsave(
+  plot = last_plot(),
+  filename = "Output/Graficos/1. OOSS/grafico1.B Evolución de los y las afiliadas a sindicatos activos en Chile. Según dependencia del sindicato.png",
+  device = "png",
+  dpi = "retina",
+  units = "cm",
+  width = 33,
+  height = 17
+)
+
+
+cuadro1 %>% select(ano,sindicatos_activos) %>% 
+  gather(tipo,tasa,-ano) %>% mutate(tasa=as.numeric(tasa)) %>% 
+  ggplot(aes(x=ano,y=tasa,color=tipo)) + geom_line() + geom_point() + theme_bw() + 
+  labs(title = "Gráfico 1. C Evolución de los sindicatos activos en Chile.",
+       x="Anos",
+       y = "Trabajadores/as",
+       caption = "Fuente: Compendio estadístico Dirección del Trabajo") + 
+  theme(legend.position = "bottom",plot.title = element_text(size=12),
+        plot.subtitle = element_text(size=10),
+        plot.caption = element_text(size=8)) + 
+  geom_text_repel(aes(label=ifelse(ano%in%c(1991,1995,2000,2004,2009,2015,2018),format(tasa, big.mark = ".", scientific = FALSE),"")), vjust=-1,colour="black") +
+  scale_x_continuous(limits = c(1990, 2018),breaks = c(1990,2000,2010,2018))
+
+
+ggsave(
+  plot = last_plot(),
+  filename = "Output/Graficos/1. OOSS/grafico1.C Evolución de los sindicatos activos en Chile.png",
   device = "png",
   dpi = "retina",
   units = "cm",
