@@ -32,6 +32,6 @@ El resumen y descarga directa de los cuadros más relevantes se presenta aquí:
 
 ### 4. Nuevos cuadros y gráficos
 
-[Cuadro1](https://github.com/nicolasrattor/COMPENDIOS_DT/raw/main/Output/Nuevo/Tasas_actualizadas.xlsx). Tasas de sindicalización nacionales actualizadas (INE CENSO 2017). En desarrollo.
+[Cuadro1](https://github.com/nicolasrattor/COMPENDIOS_DT/raw/main/Output/Nuevo/Tasas_actualizadas.xlsx). Tasas de sindicalización nacionales actualizadas (INE CENSO 2017).
 
 [Cuadro2](). Tasas de sindicalización por sector económico (INE CENSO 2017). En desarrollo. 
