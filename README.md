@@ -2,7 +2,7 @@
 
 ## Datos de los Compendios Estadísticos de la Dirección del Trabajo en formato amigable
 
-Primeros desarrollos de un proyecto de [Observatorio Sindical](https://nicolasrattor.github.io/compendio_DT.html).
+Primeros desarrollos de un proyecto colaborativo de [Observatorio Sindical]().
 
 La Dirección del Trabajo publica interesante información estadística sobre sindicatos, negociaciones colectivas y huelgas en sus [compendios estadísticos](https://www.dt.gob.cl/portal/1629/w3-propertyvalue-22777.html) para los años 1990-2018. Sin embargo, las tablas se encuentran en formato `pdf`, lo que dificulta su uso y análisis. Con el objeto de hacerle la vida más fácil a los y las colegas, y a nosotros mismos cuando queremos usar los datos, elaboramos este repositorio.
 
