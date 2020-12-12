@@ -1009,7 +1009,7 @@ ggsave(
   width = 33,
   height = 17
 )
-
+ 
 
 #### Guardar tablas ####
 library(writexl)
