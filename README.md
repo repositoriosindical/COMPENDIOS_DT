@@ -24,7 +24,7 @@ El resumen y descarga directa de los cuadros más relevantes se presenta aquí:
 
 [Cuadro5](https://github.com/nicolasrattor/COMPENDIOS_DT/raw/main/Output/Cuadros/1.%20OOSS/cuadro5.xlsx). Cantidad de afiliados a sindicatos activos a nivel nacional, por rama de actividad económica y sexo.
 
-[Cuadro7](https://github.com/nicolasrattor/COMPENDIOS_DT/raw/main/Output/Nuevo/cuadro7.xlsx). Poder sindical (cantidad de afiliados sobre la cantidad de sindicatos activos) por rama de actividad ecónomica.    
+[Cuadro7](https://github.com/ObservatorioSindical/COMPENDIOS_DT/raw/main/Output/Nuevo/cuadro7.xlsx). Poder sindical (cantidad de afiliados sobre la cantidad de sindicatos activos), por rama de actividad ecónomica.    
 
 ### 2. Negociaciones colectivas
 
