@@ -860,7 +860,7 @@ ggsave(
 
 
 #### Cuadro 6. Cantidad de sindicatos activos, según tipo de sindicato, años 1991 a 2009 ####
-#### Cuadro 7. Poder sindical por rama (cantidad de afiliados por rama sobre la cantida de sindicatos por rama) ####
+#### Cuadro 7. Tamaño sindical promedio por rama (cantidad de afiliados por rama sobre la cantida de sindicatos por rama) ####
 
 cuadro4_7<-cuadro4[,-2] #se quita año 1990 por falta de datos
 
@@ -924,70 +924,70 @@ names(cuadro7_1) <-c("Rama.Actividad.Económica", "sindicatos_91",
                      "afiliados_18")
 
 cuadro7 <- cuadro7_1 %>% group_by(Rama.Actividad.Económica) %>% 
-  mutate(Poder_1991=afiliados_91/sindicatos_91,
-         Poder_1992=afiliados_92/sindicatos_92,
-         Poder_1993=afiliados_93/sindicatos_93,
-         Poder_1994=afiliados_94/sindicatos_94,
-         Poder_1995=afiliados_95/sindicatos_95,
-         Poder_1996=afiliados_96/sindicatos_96,
-         Poder_1997=afiliados_97/sindicatos_97,
-         Poder_1998=afiliados_98/sindicatos_98,
-         Poder_1999=afiliados_99/sindicatos_99,
-         Poder_2000=afiliados_00/sindicatos_00,
-         Poder_2001=afiliados_01/sindicatos_01,
-         Poder_2002=afiliados_02/sindicatos_02,
-         Poder_2003=afiliados_03/sindicatos_03,
-         Poder_2004=afiliados_04/sindicatos_04,
-         Poder_2005=afiliados_05/sindicatos_05,
-         Poder_2006=afiliados_06/sindicatos_06,
-         Poder_2007=afiliados_07/sindicatos_07,
-         Poder_2008=afiliados_08/sindicatos_08,
-         Poder_2009=afiliados_09/sindicatos_09,
-         Poder_2010=afiliados_10/sindicatos_10,
-         Poder_2011=afiliados_11/sindicatos_11,
-         Poder_2012=afiliados_12/sindicatos_12,
-         Poder_2013=afiliados_13/sindicatos_13,
-         Poder_2014=afiliados_14/sindicatos_14,
-         Poder_2015=afiliados_15/sindicatos_15,
-         Poder_2016=afiliados_16/sindicatos_16,
-         Poder_2017=afiliados_17/sindicatos_17,
-         Poder_2018=afiliados_18/sindicatos_18) %>% as.data.frame()
+  mutate(Tamaño_1991=afiliados_91/sindicatos_91,
+         Tamaño_1992=afiliados_92/sindicatos_92,
+         Tamaño_1993=afiliados_93/sindicatos_93,
+         Tamaño_1994=afiliados_94/sindicatos_94,
+         Tamaño_1995=afiliados_95/sindicatos_95,
+         Tamaño_1996=afiliados_96/sindicatos_96,
+         Tamaño_1997=afiliados_97/sindicatos_97,
+         Tamaño_1998=afiliados_98/sindicatos_98,
+         Tamaño_1999=afiliados_99/sindicatos_99,
+         Tamaño_2000=afiliados_00/sindicatos_00,
+         Tamaño_2001=afiliados_01/sindicatos_01,
+         Tamaño_2002=afiliados_02/sindicatos_02,
+         Tamaño_2003=afiliados_03/sindicatos_03,
+         Tamaño_2004=afiliados_04/sindicatos_04,
+         Tamaño_2005=afiliados_05/sindicatos_05,
+         Tamaño_2006=afiliados_06/sindicatos_06,
+         Tamaño_2007=afiliados_07/sindicatos_07,
+         Tamaño_2008=afiliados_08/sindicatos_08,
+         Tamaño_2009=afiliados_09/sindicatos_09,
+         Tamaño_2010=afiliados_10/sindicatos_10,
+         Tamaño_2011=afiliados_11/sindicatos_11,
+         Tamaño_2012=afiliados_12/sindicatos_12,
+         Tamaño_2013=afiliados_13/sindicatos_13,
+         Tamaño_2014=afiliados_14/sindicatos_14,
+         Tamaño_2015=afiliados_15/sindicatos_15,
+         Tamaño_2016=afiliados_16/sindicatos_16,
+         Tamaño_2017=afiliados_17/sindicatos_17,
+         Tamaño_2018=afiliados_18/sindicatos_18) %>% as.data.frame()
 
 
 cuadro7 <- select(cuadro7, Rama.Actividad.Económica, 
-                  Poder_1991, 
-                  Poder_1992, 
-                  Poder_1993,
-                  Poder_1994,
-                  Poder_1995,
-                  Poder_1996,
-                  Poder_1997,
-                  Poder_1998,
-                  Poder_1999,
-                  Poder_2000,
-                  Poder_2001,
-                  Poder_2002,
-                  Poder_2003,
-                  Poder_2004,
-                  Poder_2005,
-                  Poder_2006,
-                  Poder_2007,
-                  Poder_2008,
-                  Poder_2009,
-                  Poder_2010,
-                  Poder_2011,
-                  Poder_2012,
-                  Poder_2013,
-                  Poder_2014,
-                  Poder_2015,
-                  Poder_2016,
-                  Poder_2017,
-                  Poder_2018)
+                  Tamaño_1991, 
+                  Tamaño_1992, 
+                  Tamaño_1993,
+                  Tamaño_1994,
+                  Tamaño_1995,
+                  Tamaño_1996,
+                  Tamaño_1997,
+                  Tamaño_1998,
+                  Tamaño_1999,
+                  Tamaño_2000,
+                  Tamaño_2001,
+                  Tamaño_2002,
+                  Tamaño_2003,
+                  Tamaño_2004,
+                  Tamaño_2005,
+                  Tamaño_2006,
+                  Tamaño_2007,
+                  Tamaño_2008,
+                  Tamaño_2009,
+                  Tamaño_2010,
+                  Tamaño_2011,
+                  Tamaño_2012,
+                  Tamaño_2013,
+                  Tamaño_2014,
+                  Tamaño_2015,
+                  Tamaño_2016,
+                  Tamaño_2017,
+                  Tamaño_2018)
 
 cuadro7[,-1] <-round(cuadro7[,-1],1) 
 cuadro7
 
-## Poder sindical año 2018 (ramas desagregadas) 
+## Tamaño sindical promedio año 2018 (ramas desagregadas) 
 
 cuadro7 %>% filter(Rama.Actividad.Económica!="Total") %>% 
   ggplot(aes(x=as.factor(reorder(Rama.Actividad.Económica,`Poder_2018`)),y=`Poder_2018`))+
@@ -995,14 +995,14 @@ cuadro7 %>% filter(Rama.Actividad.Económica!="Total") %>%
   scale_y_continuous(labels=function(x) format(x, big.mark = ".", scientific = FALSE)) +
   theme_bw() +  coord_flip() + 
   geom_text(aes(label = format(`Poder_2018`, big.mark = ".", scientific = FALSE)), hjust=-0.5, colour = "black", size=3.0) +
-  labs(title="Gráfico 6. Poder sindical por rama de actividad económica en 2018",
+  labs(title="Gráfico 6. Tamaño sindical promedio por rama de actividad económica en 2018",
        x="Ramas de actividad económica", 
-       y = "Poder sindical",
+       y = "Tamaño sindical",
        caption = "Observatorio Sindical")
 
 ggsave(
   plot = last_plot(),
-  filename = "Output/Nuevo/grafico6.Poder sindical por rama de actividad económica en 2018.png",
+  filename = "Output/Nuevo/grafico6.Tamaño sindical por rama de actividad económica en 2018.png",
   device = "png",
   dpi = "retina",
   units = "cm",
