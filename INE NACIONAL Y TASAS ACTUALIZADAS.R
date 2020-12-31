@@ -46,11 +46,11 @@ names(pob_edad_trabajar_2002)<-c("Año","Trimestre","Población.en.edad.de.traba
 ## Filtrar OND y combinar
 
 a<-pob_edad_trabajar %>% filter(Trimestre=="Oct - Dic" |
-                               (Trimestre=="Ago - Oct" & Año==2020)) %>%  ## Mientras no hay dato
+                               (Trimestre=="Sep - Nov" & Año==2020)) %>%  ## Mientras no hay dato
    select(Año,`Fuerza.de.trabajo.(Total)`,`Ocupados.(Total)`)
 
 b<-categoria_ocupacion %>% filter(Trimestre=="Oct - Dic" |
-                                     (Trimestre=="Ago - Oct" & Año==2020)) %>% select(`Asalariados.(Total)./4`,
+                                     (Trimestre=="Sep - Nov" & Año==2020)) %>% select(`Asalariados.(Total)./4`,
                                                                      `Personal.de.servicio.doméstico.(Total)./6`,
                                                                      `Asalariados.(Sector.privado)`)
 base2010_2020<-cbind(a,b)
@@ -85,6 +85,7 @@ base$`Personal.de.servicio.doméstico.(Total)./6`<-as.numeric(base$`Personal.de.
 base<-base %>% mutate(Dependientes=`Personal.de.servicio.doméstico.(Total)./6`+`Asalariados.(Total)./4`) %>% 
    filter(Año>=1990&Año<=2020)
 
+library(writexl)
 write_xlsx(list("INE_nacional"=base),"Output/Nuevo/INE_nacional.xlsx", 
            col_names = TRUE,format_headers = TRUE)
 
