@@ -36,4 +36,6 @@ El resumen y descarga directa de los cuadros más relevantes se presenta aquí:
 
 [Cuadro1](https://github.com/nicolasrattor/COMPENDIOS_DT/raw/main/Output/Nuevo/Tasas_actualizadas.xlsx). Tasas de sindicalización nacionales actualizadas (INE CENSO 2017).
 
-[Cuadro2](). Tasas de sindicalización por sector económico (INE CENSO 2017). En desarrollo. 
+[Cuadro2](). Tasas de sindicalización por rama de actividad ecónomica (INE CENSO 2017). En desarrollo. 
+
+[Cuadro3](https://github.com/Andreas-Lafferte/ENE-Chile/raw/main/output/tasas_privados_INE.xlsx). Tasas de sindicalización asalariados privados por rama de actividad ecónomica (INE CENSO 2017). 
