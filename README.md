@@ -39,3 +39,5 @@ El resumen y descarga directa de los cuadros más relevantes se presenta aquí:
 [Cuadro2](). Tasas de sindicalización por rama de actividad ecónomica (INE CENSO 2017). En desarrollo. 
 
 [Cuadro3](https://github.com/Andreas-Lafferte/ENE-Chile/raw/main/output/tasas_privados_INE.xlsx). Tasas de sindicalización asalariados privados por rama de actividad ecónomica (INE CENSO 2017). 
+
+[Cuadro4](https://github.com/Andreas-Lafferte/ENE-Chile/raw/main/output/tasas_privados_sexo_rama_INE.xlsx). Tasas de sindicalización asalariados privados por sexo y rama de actividad ecónomica (INE CENSO 2017). 
