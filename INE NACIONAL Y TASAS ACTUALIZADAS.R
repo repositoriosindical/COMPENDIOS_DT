@@ -3,26 +3,7 @@ library(ggrepel)
 library(openxlsx)
 library(tibble)
 
-
-# Cuadro 1 ----------------------------------------------------------------
-
-## Datos DT desde github
-cuadro1<-read.xlsx("https://github.com/nicolasrattor/COMPENDIOS_DT/raw/main/Output/Cuadros/1.%20OOSS/cuadro1.xlsx",colNames = FALSE)
-names(cuadro1)<-c("ano",
-      "sindicatos_activos",
-      "poblacion_afiliada",
-      "ft_ocupada1",
-      "tasa_sind1",
-      "ft_ocupada2",
-      "tasa_sind2",
-      "poblacion_afiliada_sind_dep",
-      "ft_ocupada3",
-      "tasa_sind3")
-
-cuadro1
-
-
-# Tabulados ocupación INE censo 2017 (desde 2010) --------------------------------------
+#### Tabulados ocupación y categoría ocupación INE ####
 
 ## Fuerza de trabajo y ocupados
 
@@ -64,11 +45,13 @@ names(pob_edad_trabajar_2002)<-c("Año","Trimestre","Población.en.edad.de.traba
 
 ## Filtrar OND y combinar
 
-a<-pob_edad_trabajar %>% filter(Trimestre=="Oct - Dic") %>% select(Año,`Fuerza.de.trabajo.(Total)`,`Ocupados.(Total)`)
+a<-pob_edad_trabajar %>% filter(Trimestre=="Oct - Dic") %>%  ## Mientras no hay dato
+   select(Año,`Fuerza.de.trabajo.(Total)`,`Ocupados.(Total)`)
+
 b<-categoria_ocupacion %>% filter(Trimestre=="Oct - Dic") %>% select(`Asalariados.(Total)./4`,
                                                                      `Personal.de.servicio.doméstico.(Total)./6`,
                                                                      `Asalariados.(Sector.privado)`)
-base2010_2019<-cbind(a,b)
+base2010_2020<-cbind(a,b)
 
 
 a<-pob_edad_trabajar_2002 %>% 
@@ -83,7 +66,7 @@ base1986_2009<-cbind(a,b)
 base1986_2009<-base1986_2009 %>% mutate(`Asalariados.(Sector.privado)`=NA)  ## ocupar para pre 2010 los sector privados DT
 
 
-base<-rbind(base1986_2009,base2010_2019)
+base<-rbind(base1986_2009,base2010_2020)
 
 as.numeric(base$`Fuerza.de.trabajo.(Total)`)
 as.numeric(base$`Ocupados.(Total)`)
@@ -98,9 +81,33 @@ base$`Personal.de.servicio.doméstico.(Total)./6`<-gsub(",", ".", base$`Personal
 base$`Personal.de.servicio.doméstico.(Total)./6`<-as.numeric(base$`Personal.de.servicio.doméstico.(Total)./6`)
 
 base<-base %>% mutate(Dependientes=`Personal.de.servicio.doméstico.(Total)./6`+`Asalariados.(Total)./4`) %>% 
-   filter(Año>=1990&Año<2019)
+   filter(Año>=1990&Año<=2020)
 
-base<-cuadro1 %>% select(poblacion_afiliada,poblacion_afiliada_sind_dep,ft_ocupada3) %>% cbind(base)
+library(writexl)
+write_xlsx(list("INE_nacional"=base),"Output/Nuevo/INE_nacional.xlsx", 
+           col_names = TRUE,format_headers = TRUE)
+
+
+
+#### Pegar cuadro INE con Cuadro DT ####
+
+## Datos DT desde github
+cuadro1<-read.xlsx("https://github.com/nicolasrattor/COMPENDIOS_DT/raw/main/Output/Cuadros/1.%20OOSS/cuadro1.xlsx",colNames = FALSE)
+names(cuadro1)<-c("ano",
+                  "sindicatos_activos",
+                  "poblacion_afiliada",
+                  "ft_ocupada1",
+                  "tasa_sind1",
+                  "ft_ocupada2",
+                  "tasa_sind2",
+                  "poblacion_afiliada_sind_dep",
+                  "ft_ocupada3",
+                  "tasa_sind3")
+
+base<-base %>% filter(Año<=2018)
+
+base<-cuadro1 %>% select(poblacion_afiliada,poblacion_afiliada_sind_dep,ft_ocupada3) %>% 
+   cbind(base)
 
 base<-base %>% mutate(`Asalariados.(Sector.privado)`=case_when(is.na(`Asalariados.(Sector.privado)`) ~ 
                                                             (ft_ocupada3-`Personal.de.servicio.doméstico.(Total)./6`)/1000,
