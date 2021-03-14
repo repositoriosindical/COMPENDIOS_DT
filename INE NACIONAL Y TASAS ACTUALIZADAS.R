@@ -45,12 +45,10 @@ names(pob_edad_trabajar_2002)<-c("Año","Trimestre","Población.en.edad.de.traba
 
 ## Filtrar OND y combinar
 
-a<-pob_edad_trabajar %>% filter(Trimestre=="Oct - Dic" |
-                               (Trimestre=="Sep - Nov" & Año==2020)) %>%  ## Mientras no hay dato
+a<-pob_edad_trabajar %>% filter(Trimestre=="Oct - Dic") %>%  ## Mientras no hay dato
    select(Año,`Fuerza.de.trabajo.(Total)`,`Ocupados.(Total)`)
 
-b<-categoria_ocupacion %>% filter(Trimestre=="Oct - Dic" |
-                                     (Trimestre=="Sep - Nov" & Año==2020)) %>% select(`Asalariados.(Total)./4`,
+b<-categoria_ocupacion %>% filter(Trimestre=="Oct - Dic") %>% select(`Asalariados.(Total)./4`,
                                                                      `Personal.de.servicio.doméstico.(Total)./6`,
                                                                      `Asalariados.(Sector.privado)`)
 base2010_2020<-cbind(a,b)

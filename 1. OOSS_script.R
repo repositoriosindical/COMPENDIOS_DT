@@ -50,7 +50,9 @@ c(2014 ,11162 ,985770,  8013717, 12.3, 6686276, 14.7, 859093  ,5061592, 17.0),
 c(2015 ,11433 ,1048234, 8136356, 12.9, 6815314, 15.4, 919315  ,5133964, 17.9),
 c(2016 ,11653 ,1139955 ,8216865 ,13.9 ,6901108 ,16.5 ,1009255 ,5142873, 19.6),
 c(2017 ,11916 ,1179445 ,8406527 ,14.0 ,6930930 ,17.0 ,1043865 ,5099920, 20.5),
-c(2018 ,11920 ,1174346 ,8414056 ,14.0 ,6927523 ,17.0 ,1045300 ,5068372, 20.6)
+c(2018 ,11920 ,1174346 ,8414056 ,14.0 ,6927523 ,17.0 ,1045300 ,5068372, 20.6),
+c(2019, 11926, 1193104, (1193104/13.1*100), 13.1, (1193104/15.9*100), 15.9,(795953+67409+177331+26303), 
+  ((795953+67409+177331+26303)/18.9*100),    18.9  )
 )
 
 cuadro1<-cuadro1 %>% as.data.frame()
@@ -70,7 +72,7 @@ cuadro1 %>% select(ano,tasa_sind1,tasa_sind2,tasa_sind3) %>%
   theme(legend.position = "bottom",plot.title = element_text(size=12),
         plot.subtitle = element_text(size=10),
         plot.caption = element_text(size=8)) + 
-  geom_text_repel(aes(label=ifelse(ano%in%c(1991,1995,2000,2004,2009,2015,2018),format(paste0(round(tasa,1),"%")),"")), vjust=-1,colour="black")
+  geom_text_repel(aes(label=ifelse(ano%in%c(1991,1995,2000,2004,2009,2015,2019),format(paste0(round(tasa,1),"%")),"")), vjust=-1,colour="black")
 
 
 
@@ -96,8 +98,8 @@ cuadro1 %>% select(ano,poblacion_afiliada,poblacion_afiliada_sind_dep) %>%
   theme(legend.position = "bottom",plot.title = element_text(size=12),
         plot.subtitle = element_text(size=10),
         plot.caption = element_text(size=8)) + 
-  geom_text_repel(aes(label=ifelse(ano%in%c(1991,1995,2000,2004,2009,2015,2018),format(tasa, big.mark = ".", scientific = FALSE),"")), vjust=-1,colour="black") +
-  scale_x_continuous(limits = c(1990, 2018),breaks = c(1990,2000,2010,2018))
+  geom_text_repel(aes(label=ifelse(ano%in%c(1991,1995,2000,2004,2009,2015,2019),format(tasa, big.mark = ".", scientific = FALSE),"")), vjust=-1,colour="black") +
+  scale_x_continuous(limits = c(1990, 2019),breaks = c(1990,2000,2010,2019))
 
 ggsave(
   plot = last_plot(),
@@ -120,8 +122,8 @@ cuadro1 %>% select(ano,sindicatos_activos) %>%
   theme(legend.position = "bottom",plot.title = element_text(size=12),
         plot.subtitle = element_text(size=10),
         plot.caption = element_text(size=8)) + 
-  geom_text_repel(aes(label=ifelse(ano%in%c(1991,1995,2000,2004,2009,2015,2018),format(tasa, big.mark = ".", scientific = FALSE),"")), vjust=-1,colour="black") +
-  scale_x_continuous(limits = c(1990, 2018),breaks = c(1990,2000,2010,2018))
+  geom_text_repel(aes(label=ifelse(ano%in%c(1991,1995,2000,2004,2009,2015,2019),format(tasa, big.mark = ".", scientific = FALSE),"")), vjust=-1,colour="black") +
+  scale_x_continuous(limits = c(1990, 2019),breaks = c(1990,2000,2010,2019))
 
 
 ggsave(
@@ -154,11 +156,14 @@ c(2014, 630512, 355258, 985770 , 4035930, 2650346, 6686276, 15.6, 13.4 ,14.7),
 c(2015, 646093, 402141, 1048234, 4081413, 2733898, 6815311, 15.8, 14.7 ,15.4),
 c(2016, 683516, 455528, 1139044, 4153796, 2747312, 6901108, 16.5, 16.6 ,16.5),
 c(2017, 691381, 488064, 1179445, 4157795, 2773138, 6930933, 16.6, 17.6 ,17.0),
-c(2018, 681399, 492947, 1174346, 4149084, 2778439, 6927523, 16.4, 17.7 ,17.0)
+c(2018, 681399, 492947, 1174346, 4149084, 2778439, 6927523, 16.4, 17.7 ,17.0),
+c(2019, 689228, 503876, 1193104,(689228/15.5*100),(503876/16.4*100),(1193104/15.9*100),15.5, 16.4 ,15.9)
 ) %>% as.data.frame()
 
+
+
 names(cuadro2)<-c("ano","afiliados_hombres","afiliados_mujeres","afiliados_total",
-                  "ft_hombres","ft_mujeres","ft_total","ft_hombres", "ft_mujeres","ft_total")
+                  "ft_hombres","ft_mujeres","ft_total","ts_hombres", "ts_mujeres","ts_total")
 
 
 #### Cuadro 3. Cantidad de sindicatos activos a nivel nacional, por rama de actividad económica ####
@@ -175,6 +180,9 @@ cuadro3_2<-read.xlsx("Input/Ilovepdf/1. OOSS.xlsx",sheet = 8,rows=c(2:21),cols=c
 
 # CIIU rev 4 2018
 cuadro3_3<-read.xlsx("Input/Ilovepdf/1. OOSS.xlsx",sheet = 9,rows=c(2:25),cols=c(1:2),na.strings = "**")
+
+# CIIU rev 4 2019
+cuadro3_4<-read.xlsx("Input/Ilovepdf/1.ooss_2019.xlsx",sheet = 4,rows=c(1:24),cols=c(1:8),na.strings = "**")
 
 
 cuadro3_2_r<-cuadro3_2 %>% add_row(Rama.Actividad.Económica="Agricultura  y  pesca",
@@ -298,9 +306,44 @@ cuadro3_3_r<-cuadro3_3 %>% add_row(Rama.Actividad.Económica="Agricultura  y  pe
   add_row(Rama.Actividad.Económica="Actividades  no  especiftcadas",
           `2018`=sum(.$`2018`[22]))
 
+
+cuadro3_4_r<-cuadro3_4 %>% rename(`2019`=Total) %>% select(Rama.Actividad.Económica,`2019`)
+cuadro3_4_r<-cuadro3_4_r %>% add_row(Rama.Actividad.Económica="Agricultura  y  pesca",
+                                   `2019`=sum(.$`2019`[1])) %>% 
+  
+  add_row(Rama.Actividad.Económica="Minería",
+          `2019`=sum(.$`2019`[2])) %>%
+  
+  add_row(Rama.Actividad.Económica="Industria",
+          `2019`=sum(.$`2019`[3])) %>%
+  
+  add_row(Rama.Actividad.Económica="Electricidad,  gas  y  agua",
+          `2019`=sum(.$`2019`[4]+.$`2019`[5])) %>%
+  
+  add_row(Rama.Actividad.Económica="Construcción",
+          `2019`=sum(.$`2019`[6])) %>%
+  
+  add_row(Rama.Actividad.Económica="Comercio",
+          `2019`=sum(.$`2019`[7]+.$`2019`[9])) %>%
+  
+  add_row(Rama.Actividad.Económica="Transporte  y  comunicaciones",
+          `2019`=sum(.$`2019`[8]+.$`2019`[10])) %>%
+  
+  add_row(Rama.Actividad.Económica="Establecimientos  ftnancieros",
+          `2019`=sum(.$`2019`[11]+.$`2019`[12])) %>%
+  
+  add_row(Rama.Actividad.Económica="Servicios",
+          `2019`=sum(.$`2019`[13]+.$`2019`[14]+.$`2019`[15]+.$`2019`[16]+.$`2019`[17]+.$`2019`[18]+.$`2019`[19]+.$`2019`[20]+.$`2019`[21])) %>%
+  
+  add_row(Rama.Actividad.Económica="Actividades  no  especiftcadas",
+          `2019`=sum(.$`2019`[22]))
+
+
+
   
 cuadro3<-merge(cuadro3_1,cuadro3_2_r,by="Rama.Actividad.Económica",all.x = TRUE)
 cuadro3<-merge(cuadro3,cuadro3_3_r,by="Rama.Actividad.Económica",all.x = TRUE)
+cuadro3<-merge(cuadro3,cuadro3_4_r,by="Rama.Actividad.Económica",all.x = TRUE)
 
 cuadro3<-unique( cuadro3 )
 cuadro3<-cuadro3[-3,]
@@ -317,7 +360,7 @@ cuadro3 %>% filter(Rama.Actividad.Económica!="Total") %>%
   theme(legend.position = "bottom",plot.title = element_text(size=12),
         plot.subtitle = element_text(size=10),
         plot.caption = element_text(size=8)) + scale_y_continuous(labels=function(x) format(x, big.mark = ".", scientific = FALSE))+
-  scale_x_continuous(limits = c(1990, 2018),breaks = c(1990,2000,2010,2018))
+  scale_x_continuous(limits = c(1990, 2019),breaks = c(1990,2000,2010,2019))
 
 ggsave(
   plot = last_plot(),
@@ -332,13 +375,14 @@ ggsave(
 
 #### Cuadro 3 solo 2018 (ramas desagregadas)
 
-cuadro3_3 %>% filter(Rama.Actividad.Económica!="Total") %>% 
-  ggplot(aes(x=as.factor(reorder(Rama.Actividad.Económica,`2018`)),y=`2018`))+
+cuadro3_4_r<-cuadro3_4 %>% rename(`2019`=Total) %>% select(Rama.Actividad.Económica,`2019`)
+cuadro3_4_r %>% filter(Rama.Actividad.Económica!="Total") %>% 
+  ggplot(aes(x=as.factor(reorder(Rama.Actividad.Económica,`2019`)),y=`2019`))+
   geom_bar(stat="identity", fill="#3399FF", colour="black", width=0.8) + 
   scale_y_continuous(labels=function(x) format(x, big.mark = ".", scientific = FALSE)) +
   theme_bw() +  coord_flip() + 
-  geom_text(aes(label = format(`2018`, big.mark = ".", scientific = FALSE)), hjust=-0.5, colour = "black", size=3.0) +
-  labs(title="Cantidad de sindicatos activos a nivel nacional, por rama de actividad económica en 2018",
+  geom_text(aes(label = format(`2019`, big.mark = ".", scientific = FALSE)), hjust=-0.5, colour = "black", size=3.0) +
+  labs(title="Cantidad de sindicatos activos a nivel nacional, por rama de actividad económica en 2019",
        x="Ramas de actividad económica", 
        y = "Sindicatos")
 
@@ -382,6 +426,12 @@ cuadro4_3<-cuadro4_3_sexo %>% select(1,4,7,10,13,16,19,22)
 cuadro4_4_sexo<-read.xlsx("Input/Ilovepdf/1. OOSS.xlsx",sheet = 19,rows=c(3:26),cols=c(1:4),na.strings = "**")
 names(cuadro4_4_sexo)<-c("Rama.Actividad.Económica","h18","m18","t18")
 cuadro4_4<-cuadro4_4_sexo %>% select(1,4)
+
+## 2019
+cuadro4_5_sexo<-read.xlsx("Input/Ilovepdf/1.ooss_2019.xlsx",sheet = 2,rows=c(1:24),cols=c(1:4),na.strings = "**")
+names(cuadro4_5_sexo)<-c("Rama.Actividad.Económica","h19","m19","t19")
+cuadro4_5<-cuadro4_5_sexo %>% select(1,4)
+
 
 ## A. Primero sin sexo
 
@@ -515,10 +565,48 @@ cuadro4_4<-cuadro4_4 %>% add_row(Rama.Actividad.Económica="Agricultura  y  pesc
   add_row(Rama.Actividad.Económica="Actividades  no  especiftcadas",
           `2018`=sum(.$`2018`[22]))
 
+
+
+colnames(cuadro4_5)<-c("Rama.Actividad.Económica",2019)
+
+cuadro4_5<-cuadro4_5 %>% add_row(Rama.Actividad.Económica="Agricultura  y  pesca",
+                                 `2019`=sum(.$`2019`[1])) %>% 
+  
+  add_row(Rama.Actividad.Económica="Minería",
+          `2019`=sum(.$`2019`[2])) %>%
+  
+  add_row(Rama.Actividad.Económica="Industria",
+          `2019`=sum(.$`2019`[3])) %>%
+  
+  add_row(Rama.Actividad.Económica="Electricidad,  gas  y  agua",
+          `2019`=sum(.$`2019`[4]+.$`2019`[5])) %>%
+  
+  add_row(Rama.Actividad.Económica="Construcción",
+          `2019`=sum(.$`2019`[6])) %>%
+  
+  add_row(Rama.Actividad.Económica="Comercio",
+          `2019`=sum(.$`2019`[7]+.$`2019`[9])) %>%
+  
+  add_row(Rama.Actividad.Económica="Transporte  y  comunicaciones",
+          `2019`=sum(.$`2019`[8]+.$`2019`[10])) %>%
+  
+  add_row(Rama.Actividad.Económica="Establecimientos  ftnancieros",
+          `2019`=sum(.$`2019`[11]+.$`2019`[12])) %>%
+  
+  add_row(Rama.Actividad.Económica="Servicios",
+          `2019`=sum(.$`2019`[13]+.$`2019`[14]+.$`2019`[15]+.$`2019`[16]+.$`2019`[17]+.$`2019`[18]+.$`2019`[19]+.$`2019`[20]+.$`2019`[21])) %>%
+  
+  add_row(Rama.Actividad.Económica="Actividades  no  especiftcadas",
+          `2019`=sum(.$`2019`[22]))
+
+
+
+
 cuadro4<-merge(cuadro4_1,cuadro4_2,by="Rama.Actividad.Económica")
 
 cuadro4<-merge(cuadro4,cuadro4_3,by="Rama.Actividad.Económica",all.x = TRUE)
 cuadro4<-merge(cuadro4,cuadro4_4,by="Rama.Actividad.Económica",all.x = TRUE)
+cuadro4<-merge(cuadro4,cuadro4_5,by="Rama.Actividad.Económica",all.x = TRUE)
 
 cuadro4<-unique( cuadro4 )
 cuadro4<-cuadro4[-3,]
@@ -534,7 +622,7 @@ cuadro4 %>% filter(Rama.Actividad.Económica!="Total") %>%
   theme(legend.position = "bottom",plot.title = element_text(size=12),
         plot.subtitle = element_text(size=10),
         plot.caption = element_text(size=8)) + scale_y_continuous(labels=function(x) format(x, big.mark = ".", scientific = FALSE))+
-  scale_x_continuous(limits = c(1990, 2018),breaks = c(1990,2000,2010,2018))
+  scale_x_continuous(limits = c(1990, 2019),breaks = c(1990,2000,2010,2019))
 
 
 
@@ -555,6 +643,8 @@ ggsave(
 cuadro4_2<-cuadro4_2_sexo %>% select(1,4-2,7-2,10-2,13-2,16-2,19-2,22-2,25-2,28-2)
 cuadro4_3<-cuadro4_3_sexo %>% select(1,4-2,7-2,10-2,13-2,16-2,19-2,22-2)
 cuadro4_4<-cuadro4_4_sexo %>% select(1,4-2)
+cuadro4_5<-cuadro4_5_sexo %>% select(1,4-2)
+
 
 colnames(cuadro4_2)<-c("Rama.Actividad.Económica",2002,2003,2004,2005,2006,2007,2008,2009,2010)
 
@@ -650,8 +740,9 @@ cuadro4_3<-cuadro4_3 %>% add_row(Rama.Actividad.Económica="Agricultura  y  pesc
           `2016`=sum(.$`2016`[18]),
           `2017`=sum(.$`2017`[18]))
 
-colnames(cuadro4_4)<-c("Rama.Actividad.Económica",2018)
 
+
+colnames(cuadro4_4)<-c("Rama.Actividad.Económica",2018)
 cuadro4_4<-cuadro4_4 %>% add_row(Rama.Actividad.Económica="Agricultura  y  pesca",
                                  `2018`=sum(.$`2018`[1])) %>% 
   
@@ -682,8 +773,43 @@ cuadro4_4<-cuadro4_4 %>% add_row(Rama.Actividad.Económica="Agricultura  y  pesc
   add_row(Rama.Actividad.Económica="Actividades  no  especiftcadas",
           `2018`=sum(.$`2018`[22]))
 
+
+
+
+colnames(cuadro4_5)<-c("Rama.Actividad.Económica",2019)
+cuadro4_5<-cuadro4_5 %>% add_row(Rama.Actividad.Económica="Agricultura  y  pesca",
+                                 `2019`=sum(.$`2019`[1])) %>% 
+  
+  add_row(Rama.Actividad.Económica="Minería",
+          `2019`=sum(.$`2019`[2])) %>%
+  
+  add_row(Rama.Actividad.Económica="Industria",
+          `2019`=sum(.$`2019`[3])) %>%
+  
+  add_row(Rama.Actividad.Económica="Electricidad,  gas  y  agua",
+          `2019`=sum(.$`2019`[4]+.$`2019`[5])) %>%
+  
+  add_row(Rama.Actividad.Económica="Construcción",
+          `2019`=sum(.$`2019`[6])) %>%
+  
+  add_row(Rama.Actividad.Económica="Comercio",
+          `2019`=sum(.$`2019`[7]+.$`2019`[9])) %>%
+  
+  add_row(Rama.Actividad.Económica="Transporte  y  comunicaciones",
+          `2019`=sum(.$`2019`[8]+.$`2019`[10])) %>%
+  
+  add_row(Rama.Actividad.Económica="Establecimientos  ftnancieros",
+          `2019`=sum(.$`2019`[11]+.$`2019`[12])) %>%
+  
+  add_row(Rama.Actividad.Económica="Servicios",
+          `2019`=sum(.$`2019`[13]+.$`2019`[14]+.$`2019`[15]+.$`2019`[16]+.$`2019`[17]+.$`2019`[18]+.$`2019`[19]+.$`2019`[20]+.$`2019`[21])) %>%
+  
+  add_row(Rama.Actividad.Económica="Actividades  no  especiftcadas",
+          `2019`=sum(.$`2019`[22]))
+
 cuadro5_hombres<-merge(cuadro4_2,cuadro4_3,by="Rama.Actividad.Económica",all.x = TRUE)
 cuadro5_hombres<-merge(cuadro5_hombres,cuadro4_4,by="Rama.Actividad.Económica",all.x = TRUE)
+cuadro5_hombres<-merge(cuadro5_hombres,cuadro4_5,by="Rama.Actividad.Económica",all.x = TRUE)
 
 cuadro5_hombres<-unique( cuadro5_hombres )
 cuadro5_hombres<-cuadro5_hombres[-3,]
@@ -693,6 +819,8 @@ cuadro5_hombres<-cuadro5_hombres[-3,]
 cuadro4_2<-cuadro4_2_sexo %>% select(1,4-1,7-1,10-1,13-1,16-1,19-1,22-1,25-1,28-1)
 cuadro4_3<-cuadro4_3_sexo %>% select(1,4-1,7-1,10-1,13-1,16-1,19-1,22-1)
 cuadro4_4<-cuadro4_4_sexo %>% select(1,4-1)
+cuadro4_5<-cuadro4_5_sexo %>% select(1,4-1)
+
 
 colnames(cuadro4_2)<-c("Rama.Actividad.Económica",2002,2003,2004,2005,2006,2007,2008,2009,2010)
 
@@ -788,8 +916,9 @@ cuadro4_3<-cuadro4_3 %>% add_row(Rama.Actividad.Económica="Agricultura  y  pesc
           `2016`=sum(.$`2016`[18]),
           `2017`=sum(.$`2017`[18]))
 
-colnames(cuadro4_4)<-c("Rama.Actividad.Económica",2018)
 
+
+colnames(cuadro4_4)<-c("Rama.Actividad.Económica",2018)
 cuadro4_4<-cuadro4_4 %>% add_row(Rama.Actividad.Económica="Agricultura  y  pesca",
                                  `2018`=sum(.$`2018`[1])) %>% 
   
@@ -820,8 +949,47 @@ cuadro4_4<-cuadro4_4 %>% add_row(Rama.Actividad.Económica="Agricultura  y  pesc
   add_row(Rama.Actividad.Económica="Actividades  no  especiftcadas",
           `2018`=sum(.$`2018`[22]))
 
+
+
+
+colnames(cuadro4_5)<-c("Rama.Actividad.Económica",2019)
+cuadro4_5<-cuadro4_5 %>% add_row(Rama.Actividad.Económica="Agricultura  y  pesca",
+                                 `2019`=sum(.$`2019`[1])) %>% 
+  
+  add_row(Rama.Actividad.Económica="Minería",
+          `2019`=sum(.$`2019`[2])) %>%
+  
+  add_row(Rama.Actividad.Económica="Industria",
+          `2019`=sum(.$`2019`[3])) %>%
+  
+  add_row(Rama.Actividad.Económica="Electricidad,  gas  y  agua",
+          `2019`=sum(.$`2019`[4]+.$`2019`[5])) %>%
+  
+  add_row(Rama.Actividad.Económica="Construcción",
+          `2019`=sum(.$`2019`[6])) %>%
+  
+  add_row(Rama.Actividad.Económica="Comercio",
+          `2019`=sum(.$`2019`[7]+.$`2019`[9])) %>%
+  
+  add_row(Rama.Actividad.Económica="Transporte  y  comunicaciones",
+          `2019`=sum(.$`2019`[8]+.$`2019`[10])) %>%
+  
+  add_row(Rama.Actividad.Económica="Establecimientos  ftnancieros",
+          `2019`=sum(.$`2019`[11]+.$`2019`[12])) %>%
+  
+  add_row(Rama.Actividad.Económica="Servicios",
+          `2019`=sum(.$`2019`[13]+.$`2019`[14]+.$`2019`[15]+.$`2019`[16]+.$`2019`[17]+.$`2019`[18]+.$`2019`[19]+.$`2019`[20]+.$`2019`[21])) %>%
+  
+  add_row(Rama.Actividad.Económica="Actividades  no  especiftcadas",
+          `2019`=sum(.$`2019`[22]))
+
+
+
+
 cuadro5_mujeres<-merge(cuadro4_2,cuadro4_3,by="Rama.Actividad.Económica",all.x = TRUE)
 cuadro5_mujeres<-merge(cuadro5_mujeres,cuadro4_4,by="Rama.Actividad.Económica",all.x = TRUE)
+cuadro5_mujeres<-merge(cuadro5_mujeres,cuadro4_5,by="Rama.Actividad.Económica",all.x = TRUE)
+
 
 cuadro5_mujeres<-unique( cuadro5_mujeres )
 cuadro5_mujeres<-cuadro5_mujeres[-3,]
@@ -843,7 +1011,7 @@ cuadro5 %>% filter(Rama.Actividad.Económica!="Total") %>%
   theme(legend.position = "bottom",plot.title = element_text(size=12),
         plot.subtitle = element_text(size=10),
         plot.caption = element_text(size=8)) + scale_y_continuous(labels=function(x) format(x, big.mark = ".", scientific = FALSE))+
-  scale_x_continuous(limits = c(2002, 2018),breaks = c(2002,2010,2018))
+  scale_x_continuous(limits = c(2002, 2019),breaks = c(2002,2010,2019))
 
 
 
@@ -866,7 +1034,8 @@ cuadro4_7<-cuadro4[,-2] #se quita año 1990 por falta de datos
 
 cuadro7_1 <-merge(cuadro3, cuadro4_7, by="Rama.Actividad.Económica", all.x = TRUE)
 
-names(cuadro7_1) <-c("Rama.Actividad.Económica", "sindicatos_91",
+names(cuadro7_1) <-c("Rama.Actividad.Económica", 
+                     "sindicatos_91",
                      "sindicatos_92",
                      "sindicatos_93",
                      "sindicatos_94",
@@ -894,6 +1063,7 @@ names(cuadro7_1) <-c("Rama.Actividad.Económica", "sindicatos_91",
                      "sindicatos_16",
                      "sindicatos_17",
                      "sindicatos_18",
+                     "sindicatos_19",
                      "afiliados_91",
                      "afiliados_92",
                      "afiliados_93",
@@ -921,7 +1091,8 @@ names(cuadro7_1) <-c("Rama.Actividad.Económica", "sindicatos_91",
                      "afiliados_15",
                      "afiliados_16",
                      "afiliados_17",
-                     "afiliados_18")
+                     "afiliados_18",
+                     "afiliados_19")
 
 cuadro7 <- cuadro7_1 %>% group_by(Rama.Actividad.Económica) %>% 
   mutate(Tamaño_1991=afiliados_91/sindicatos_91,
@@ -951,7 +1122,8 @@ cuadro7 <- cuadro7_1 %>% group_by(Rama.Actividad.Económica) %>%
          Tamaño_2015=afiliados_15/sindicatos_15,
          Tamaño_2016=afiliados_16/sindicatos_16,
          Tamaño_2017=afiliados_17/sindicatos_17,
-         Tamaño_2018=afiliados_18/sindicatos_18) %>% as.data.frame()
+         Tamaño_2018=afiliados_18/sindicatos_18,
+         Tamaño_2019=afiliados_19/sindicatos_19) %>% as.data.frame()
 
 
 cuadro7 <- select(cuadro7, Rama.Actividad.Económica, 
@@ -982,7 +1154,8 @@ cuadro7 <- select(cuadro7, Rama.Actividad.Económica,
                   Tamaño_2015,
                   Tamaño_2016,
                   Tamaño_2017,
-                  Tamaño_2018)
+                  Tamaño_2018,
+                  Tamaño_2019)
 
 cuadro7[,-1] <-round(cuadro7[,-1],1) 
 cuadro7
@@ -990,19 +1163,19 @@ cuadro7
 ## Tamaño sindical promedio año 2018 (ramas desagregadas) 
 
 cuadro7 %>% filter(Rama.Actividad.Económica!="Total") %>% 
-  ggplot(aes(x=as.factor(reorder(Rama.Actividad.Económica,`Poder_2018`)),y=`Poder_2018`))+
+  ggplot(aes(x=as.factor(reorder(Rama.Actividad.Económica,`Tamaño_2019`)),y=`Tamaño_2019`))+
   geom_bar(stat="identity", fill="#d8576b", colour="black", width=0.8) + 
   scale_y_continuous(labels=function(x) format(x, big.mark = ".", scientific = FALSE)) +
   theme_bw() +  coord_flip() + 
-  geom_text(aes(label = format(`Poder_2018`, big.mark = ".", scientific = FALSE)), hjust=-0.5, colour = "black", size=3.0) +
-  labs(title="Gráfico 6. Tamaño sindical promedio por rama de actividad económica en 2018",
+  geom_text(aes(label = format(`Tamaño_2019`, big.mark = ".", scientific = FALSE)), hjust=-0.5, colour = "black", size=3.0) +
+  labs(title="Gráfico 6. Tamaño sindical promedio por rama de actividad económica en 2019",
        x="Ramas de actividad económica", 
        y = "Tamaño sindical",
-       caption = "Observatorio Sindical")
+       caption = "Repositorio Estadísticas Sindicales")
 
 ggsave(
   plot = last_plot(),
-  filename = "Output/Nuevo/grafico6.Tamaño sindical por rama de actividad económica en 2018.png",
+  filename = "Output/Nuevo/grafico6.Tamaño sindical por rama de actividad económica en 2019.png",
   device = "png",
   dpi = "retina",
   units = "cm",
@@ -1019,3 +1192,4 @@ write_xlsx(cuadro3,"Output/Cuadros/1. OOSS/cuadro3.xlsx", col_names = TRUE,forma
 write_xlsx(cuadro4,"Output/Cuadros/1. OOSS/cuadro4.xlsx", col_names = TRUE,format_headers = TRUE)
 write_xlsx(cuadro5,"Output/Cuadros/1. OOSS/cuadro5.xlsx", col_names = TRUE,format_headers = TRUE)
 write_xlsx(cuadro7,"Output/Nuevo/cuadro7.xlsx", col_names = TRUE,format_headers = TRUE)
+

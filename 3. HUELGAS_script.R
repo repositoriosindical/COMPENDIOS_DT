@@ -38,7 +38,8 @@ c(2014 ,824 ,129334, 214, 41939),
 c(2015 ,841 ,127458, 174, 24325),
 c(2016 ,800 ,115064, 204, 36876),
 c(2017 ,747 ,110158, 148, 19425),
-c(2018 ,698 ,169087, 143, 15969)
+c(2018 ,698 ,169087, 143, 15969),
+c(2019, 845, 124250, 153, 32128)
 )
 
 cuadro1<-cuadro1 %>% as.data.frame()
@@ -57,8 +58,8 @@ cuadro1 %>% select(ano,huelgas_aprobadas,huelgas_efectuadas) %>%
   theme(legend.position = "bottom",plot.title = element_text(size=12),
         plot.subtitle = element_text(size=10),
         plot.caption = element_text(size=8)) + 
-  geom_text_repel(aes(label=ifelse(ano%in%c(1997,2000,2004,2009,2015,2018),format(round(huelgas,1)),"")), vjust=-1,colour="black") +
-  scale_x_continuous(limits = c(1997, 2018),breaks = c(1997,2001,2005,2009,2014,2018))
+  geom_text_repel(aes(label=ifelse(ano%in%c(1997,2000,2004,2009,2015,2019),format(round(huelgas,1)),"")), vjust=-1,colour="black") +
+  scale_x_continuous(limits = c(1997, 2019),breaks = c(1997,2001,2005,2009,2014,2019))
   
   
   ggsave(
@@ -82,9 +83,9 @@ cuadro1 %>% select(ano,huelgas_aprobadas,huelgas_efectuadas) %>%
     theme(legend.position = "bottom",plot.title = element_text(size=12),
           plot.subtitle = element_text(size=10),
           plot.caption = element_text(size=8)) + 
-    geom_text_repel(aes(label=ifelse(ano%in%c(1997,2001,2005,2009,2012,2014,2018),format(round(huelgas,1),big.mark = ".", scientific = FALSE),"")), vjust=-1,colour="black") +
+    geom_text_repel(aes(label=ifelse(ano%in%c(1997,2001,2005,2009,2012,2014,2019),format(round(huelgas,1),big.mark = ".", scientific = FALSE),"")), vjust=-1,colour="black") +
     scale_y_continuous(labels=function(x) format(x, big.mark = ".", scientific = FALSE))+
-    scale_x_continuous(limits = c(1997, 2018),breaks = c(1997,2001,2005,2009,2014,2018))
+    scale_x_continuous(limits = c(1997, 2019),breaks = c(1997,2001,2005,2009,2014,2019))
   
   
   ggsave(
@@ -131,7 +132,8 @@ cuadro1 %>% select(ano,huelgas_aprobadas,huelgas_efectuadas) %>%
     c(2015, 174 ,24325 ,2524, 14.5 ,330509 ,NA),
     c(2016, 204 ,36876 ,3279, 16.1 ,606590 ,NA),
     c(2017, 148 ,19425 ,2406, 16.3 ,383738 ,NA),
-    c(2018, 143 ,15969 ,2233, 15.6 ,242902 ,15.2)
+    c(2018, 143 ,15969 ,2233, 15.6 ,242902 ,15.2),
+    c(2019, 153, 32128, 2287, 14.9, 382083, 11.9)
   
 )
   
@@ -149,9 +151,9 @@ cuadro1 %>% select(ano,huelgas_aprobadas,huelgas_efectuadas) %>%
     theme(legend.position = "bottom",plot.title = element_text(size=12),
           plot.subtitle = element_text(size=10),
           plot.caption = element_text(size=8)) + 
-    geom_text_repel(aes(label=ifelse(ano%in%c(1997,2001,2005,2009,2012,2014,2018),format(round(`promedio dias`,1),big.mark = ".", scientific = FALSE),"")), vjust=-1,colour="black") +
+    geom_text_repel(aes(label=ifelse(ano%in%c(1997,2001,2005,2009,2012,2014,2019),format(round(`promedio dias`,1),big.mark = ".", scientific = FALSE),"")), vjust=-1,colour="black") +
     scale_y_continuous(labels=function(x) format(x, big.mark = ".", scientific = FALSE))+
-    scale_x_continuous(limits = c(1997, 2018),breaks = c(1997,2001,2005,2009,2014,2018))
+    scale_x_continuous(limits = c(1997, 2019),breaks = c(1997,2001,2005,2009,2014,2019))
   
 
   ggsave(
@@ -203,6 +205,44 @@ cuadro1 %>% select(ano,huelgas_aprobadas,huelgas_efectuadas) %>%
   
   
   
+  cuadro3_2019_sexo<-read.xlsx("Input/Ilovepdf/5.huelgas_2019.xlsx",sheet = 3,rows=c(3:26),cols=c(1:5),na.strings = "**")
+  cuadro3_2019_huelgas<-cuadro3_2019_sexo %>% select(1,2)
+  names(cuadro3_2019_huelgas)<-c("Rama.Actividad.Económica","huelgas_terminadas")
+  
+  cuadro3_2019_huelgas<-cuadro3_2019_huelgas %>% add_row(Rama.Actividad.Económica="Agricultura  y  pesca",
+                                                         `huelgas_terminadas`=sum(.$`huelgas_terminadas`[1])) %>% 
+    
+    add_row(Rama.Actividad.Económica="Minería",
+            `huelgas_terminadas`=sum(.$`huelgas_terminadas`[2])) %>%
+    
+    add_row(Rama.Actividad.Económica="Industria",
+            `huelgas_terminadas`=sum(.$`huelgas_terminadas`[3])) %>%
+    
+    add_row(Rama.Actividad.Económica="Electricidad,  gas  y  agua",
+            `huelgas_terminadas`=sum(.$`huelgas_terminadas`[4]+.$`huelgas_terminadas`[5])) %>%
+    
+    add_row(Rama.Actividad.Económica="Construcción",
+            `huelgas_terminadas`=sum(.$`huelgas_terminadas`[6])) %>%
+    
+    add_row(Rama.Actividad.Económica="Comercio",
+            `huelgas_terminadas`=sum(.$`huelgas_terminadas`[7]+.$`huelgas_terminadas`[9])) %>%
+    
+    add_row(Rama.Actividad.Económica="Transporte  y  comunicaciones",
+            `huelgas_terminadas`=sum(.$`huelgas_terminadas`[8]+.$`huelgas_terminadas`[10])) %>%
+    
+    add_row(Rama.Actividad.Económica="Establecimientos  ftnancieros",
+            `huelgas_terminadas`=sum(.$`huelgas_terminadas`[11]+.$`huelgas_terminadas`[12])) %>%
+    
+    add_row(Rama.Actividad.Económica="Servicios",
+            `huelgas_terminadas`=sum(.$`huelgas_terminadas`[13]+.$`huelgas_terminadas`[14]+.$`huelgas_terminadas`[15]+.$`huelgas_terminadas`[16]+.$`huelgas_terminadas`[17]+.$`huelgas_terminadas`[18]+.$`huelgas_terminadas`[19]+.$`huelgas_terminadas`[20]+.$`huelgas_terminadas`[21])) %>%
+    
+    add_row(Rama.Actividad.Económica="Actividades  no  especiftcadas",
+            `huelgas_terminadas`=sum(.$`huelgas_terminadas`[22]))
+  
+  
+  
+  
+  
   cuadro3_2018_trabajadores<-cuadro3_2018_sexo %>% select(1,5)
   names(cuadro3_2018_trabajadores)<-c("Rama.Actividad.Económica","trabajadores")
   
@@ -236,12 +276,55 @@ cuadro1 %>% select(ano,huelgas_aprobadas,huelgas_efectuadas) %>%
     add_row(Rama.Actividad.Económica="Actividades  no  especiftcadas",
             `trabajadores`=sum(.$`trabajadores`[22]))
   
+  
+  
+  cuadro3_2019_trabajadores<-cuadro3_2019_sexo %>% select(1,5)
+  names(cuadro3_2019_trabajadores)<-c("Rama.Actividad.Económica","trabajadores")
+  
+  cuadro3_2019_trabajadores<-cuadro3_2019_trabajadores %>% add_row(Rama.Actividad.Económica="Agricultura  y  pesca",
+                                                                   `trabajadores`=sum(.$`trabajadores`[1])) %>% 
+    
+    add_row(Rama.Actividad.Económica="Minería",
+            `trabajadores`=sum(.$`trabajadores`[2])) %>%
+    
+    add_row(Rama.Actividad.Económica="Industria",
+            `trabajadores`=sum(.$`trabajadores`[3])) %>%
+    
+    add_row(Rama.Actividad.Económica="Electricidad,  gas  y  agua",
+            `trabajadores`=sum(.$`trabajadores`[4]+.$`trabajadores`[5])) %>%
+    
+    add_row(Rama.Actividad.Económica="Construcción",
+            `trabajadores`=sum(.$`trabajadores`[6])) %>%
+    
+    add_row(Rama.Actividad.Económica="Comercio",
+            `trabajadores`=sum(.$`trabajadores`[7]+.$`trabajadores`[9])) %>%
+    
+    add_row(Rama.Actividad.Económica="Transporte  y  comunicaciones",
+            `trabajadores`=sum(.$`trabajadores`[8]+.$`trabajadores`[10])) %>%
+    
+    add_row(Rama.Actividad.Económica="Establecimientos  ftnancieros",
+            `trabajadores`=sum(.$`trabajadores`[11]+.$`trabajadores`[12])) %>%
+    
+    add_row(Rama.Actividad.Económica="Servicios",
+            `trabajadores`=sum(.$`trabajadores`[13]+.$`trabajadores`[14]+.$`trabajadores`[15]+.$`trabajadores`[16]+.$`trabajadores`[17]+.$`trabajadores`[18]+.$`trabajadores`[19]+.$`trabajadores`[20]+.$`trabajadores`[21])) %>%
+    
+    add_row(Rama.Actividad.Económica="Actividades  no  especiftcadas",
+            `trabajadores`=sum(.$`trabajadores`[22]))
+  
+  
+  
 
   cuadro3_2018_trabajadores<-cuadro3_2018_trabajadores[c(24:33),]
   cuadro3_2018_huelgas     <-cuadro3_2018_huelgas[c(24:33),]
   
+  cuadro3_2019_trabajadores<-cuadro3_2019_trabajadores[c(24:33),]
+  cuadro3_2019_huelgas     <-cuadro3_2019_huelgas[c(24:33),]
+  
   names(cuadro3_2018_trabajadores)<-c("Sector","2018")
   names(cuadro3_2018_huelgas)     <-c("Sector","2018")
+  
+  names(cuadro3_2019_trabajadores)<-c("Sector","2019")
+  names(cuadro3_2019_huelgas)     <-c("Sector","2019")
 
   
   
@@ -264,13 +347,19 @@ cuadro1 %>% select(ano,huelgas_aprobadas,huelgas_efectuadas) %>%
   cuadro3_2018_trabajadores<-cuadro3_2018_trabajadores %>% arrange(Sector)
   cuadro3_2018_trabajadores<-cuadro3_2018_trabajadores %>% select(`2018`)
   
-  cuadro3_TC<-cbind(cuadro3_TC,cuadro3_2018_trabajadores)
+  cuadro3_2019_trabajadores<-cuadro3_2019_trabajadores %>% arrange(Sector)
+  cuadro3_2019_trabajadores<-cuadro3_2019_trabajadores %>% select(`2019`)
+  
+  cuadro3_TC<-cbind(cuadro3_TC,cuadro3_2018_trabajadores,cuadro3_2019_trabajadores)
   
   cuadro3_huelgas <-cuadro3_huelgas %>% arrange(Sector)
   cuadro3_2018_huelgas<-cuadro3_2018_huelgas %>% arrange(Sector)
   cuadro3_2018_huelgas<-cuadro3_2018_huelgas %>% select(`2018`)
   
-  cuadro3_huelgas<-cbind(cuadro3_huelgas,cuadro3_2018_huelgas)
+  cuadro3_2019_huelgas<-cuadro3_2019_huelgas %>% arrange(Sector)
+  cuadro3_2019_huelgas<-cuadro3_2019_huelgas %>% select(`2019`)
+  
+  cuadro3_huelgas<-cbind(cuadro3_huelgas,cuadro3_2018_huelgas,cuadro3_2019_huelgas)
   
   
   
@@ -286,7 +375,7 @@ cuadro1 %>% select(ano,huelgas_aprobadas,huelgas_efectuadas) %>%
           plot.subtitle = element_text(size=10),
           plot.caption = element_text(size=8)) + 
     scale_y_continuous(labels=function(x) format(x, big.mark = ".", scientific = FALSE))+
-    scale_x_continuous(breaks = c(1990,1993,1997,2001,2005,2009,2014,2018))
+    scale_x_continuous(breaks = c(1990,1993,1997,2001,2005,2009,2014,2019))
   
   
   ggsave(
@@ -311,7 +400,7 @@ cuadro1 %>% select(ano,huelgas_aprobadas,huelgas_efectuadas) %>%
           plot.subtitle = element_text(size=10),
           plot.caption = element_text(size=8)) + 
     scale_y_continuous(labels=function(x) format(x, big.mark = ".", scientific = FALSE))+
-    scale_x_continuous(breaks = c(1990,1993,1997,2001,2005,2009,2014,2018))
+    scale_x_continuous(breaks = c(1990,1993,1997,2001,2005,2009,2014,2019))
   
   ggsave(
     plot = last_plot(),
@@ -335,7 +424,7 @@ cuadro1 %>% select(ano,huelgas_aprobadas,huelgas_efectuadas) %>%
           plot.subtitle = element_text(size=10),
           plot.caption = element_text(size=8)) + 
     scale_y_continuous(labels=function(x) format(x, big.mark = ".", scientific = FALSE))+
-    scale_x_continuous(breaks = c(1990,2005,2018))
+    scale_x_continuous(breaks = c(1990,2005,2019))
   
   ggsave(
     plot = last_plot(),
