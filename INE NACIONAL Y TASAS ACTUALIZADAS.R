@@ -104,7 +104,7 @@ names(cuadro1)<-c("ano",
                   "ft_ocupada3",
                   "tasa_sind3")
 
-base<-base %>% filter(Año<=2018)
+base<-base %>% filter(Año<=2019)
 
 base<-cuadro1 %>% select(poblacion_afiliada,poblacion_afiliada_sind_dep,ft_ocupada3) %>% 
    cbind(base)
@@ -134,8 +134,8 @@ base %>% mutate(Año=as.numeric(as.character(Año))) %>%
    theme(legend.position = "bottom",plot.title = element_text(size=12),
          plot.subtitle = element_text(size=10),
          plot.caption = element_text(size=8)) + 
-   scale_x_continuous(breaks = c(1991,1995,2000,2004,2009,2015,2018),limits = c(1990,2018))+
-   geom_text_repel(aes(label=ifelse(Año%in%c(1991,1995,2000,2004,2009,2015,2018),
+   scale_x_continuous(breaks = c(1991,1995,2000,2004,2009,2015,2018),limits = c(1990,2019))+
+   geom_text_repel(aes(label=ifelse(Año%in%c(1991,1995,2000,2004,2009,2015,2019),
                                     format(paste0(round(tasa,1),"%")),"")), vjust=-1,colour="black")
 
 
